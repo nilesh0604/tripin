@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    Register
+                </div>
+                <div class="panel-body">
+                    <div class="row" ng-class="{'fade-container': vm.loading}">
+                        <div class="col-lg-12">
+                            <form role="form" name="registerUser" ng-submit="vm.submitForm()" novalidate>
+                                <div class="form-group" ng-class="{ 'has-error' : registerUser.first_name.$invalid && !registerUser.first_name.$pristine }">
+                                    <label>First Name</label>
+                                    <input type="text" class="form-control" name="first_name" ng-model="vm.newUser.first_name" placeholder="First Name" required>
+                                    <p ng-show="registerUser.first_name.$invalid && !registerUser.first_name.$pristine" class="help-block">First name is required.</p>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error' : registerUser.last_name.$invalid && !registerUser.last_name.$pristine }">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control" name="last_name" ng-model="vm.newUser.last_name" placeholder="Last Name" required>
+                                    <p ng-show="registerUser.last_name.$invalid && !registerUser.last_name.$pristine" class="help-block">Last name is required.</p>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error' : registerUser.username.$invalid && !registerUser.username.$pristine }">
+                                    <label>Username</label>
+                                    <input type="text" name="username" class="form-control" ng-model="vm.newUser.username" placeholder="Username" ng-minlength="3" ng-maxlength="8">
+                                    <p ng-show="registerUser.username.$error.minlength" class="help-block">Username is too short.</p>
+                                    <p ng-show="registerUser.username.$error.maxlength" class="help-block">Username is too long.</p>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error' : registerUser.password.$invalid && !registerUser.password.$pristine }">
+                                    <label>Password</label>
+                                    <input type="password" name="password" ng-model="vm.newUser.password" class="form-control" placeholder="Password" ng-minlength="3" ng-maxlength="8">
+                                    <p ng-show="registerUser.password.$error.minlength" class="help-block">Password is too short.</p>
+                                    <p ng-show="registerUser.password.$error.maxlength" class="help-block">Password is too long.</p>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error' : registerUser.mobile.$invalid && !registerUser.mobile.$pristine }">
+                                    <label>Mobile</label>
+                                    <input type="text" name="mobile" ng-model="vm.newUser.mobile" class="form-control" placeholder="Mobile" required>
+                                    <p ng-show="registerUser.mobile.$invalid && !registerUser.mobile.$pristine" class="help-block">Mobile is required.</p>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error' : registerUser.email.$invalid && !registerUser.email.$pristine }">
+                                    <label>Email</label>
+                                    <input type="email" name="email" ng-model="vm.newUser.email" class="form-control" placeholder="Email" required>
+                                    <p ng-show="registerUser.email.$invalid && !registerUser.email.$pristine" class="help-block">Enter a valid email.</p>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error' : errFiles.length || (registerUser.photo.$invalid && !registerUser.photo.$pristine) }">
+                                    <label>Profile Photo</label>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <input type="text" name="photo" readonly ng-model="vm.newUser.photo" class="form-control" placeholder="Upload Profile Photo" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button class="btn btn-default" ngf-select="uploadFiles($files, $invalidFiles)" accept="image/jpeg" ngf-pattern="'image/jpeg'" ngf-max-height="1000" ngf-max-size="2MB">Select file</button>
+                                        </div>
+                                        <p ng-show="registerUser.photo.$invalid && !registerUser.photo.$pristine" class="help-block">Please select photo.</p>
+                                    </div>
+                                    <ul class="image-upload-container" style="margin-top: 20px; padding-left: 0px">
+                                        <li ng-repeat="f in files" style="list-style:none">
+                                            <div class="progress">
+                                                <div class="progress-bar" ng-class="{'progress-bar-striped active': !f.uploadFinished, 'progress-bar-success progress-bar-striped': f.uploadFinished
+}" role="progressbar" aria-valuenow="{{f.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{f.progress}}%">
+                                                    <span class="sr-only">{{f.progress}}% Complete</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li ng-repeat="f in errFiles" style="list-style:none">
+                                            <p ng-show="errFiles.length" class="help-block">{{f.name}} : {{f.$error}} : {{f.$errorParam}}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <button type="submit" class="btn btn-primary" ng-disabled="registerUser.$invalid">Submit</button>
+                                <button type="reset" class="btn btn-warning">Reset Button</button>
+                                <a href="#/login" class="btn btn-success pull-right">Login</a>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.row (nested) -->
+                    <div ng-show="vm.loading" class="loader-container register-loader">
+                        <div class="loader "></div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+    </div>
+</div>

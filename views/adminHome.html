@@ -1,0 +1,83 @@
+<div id="page-wrapper">
+    <div class="row" ng-if="!vm.loading">
+        <div class="col-lg-12">
+            <h1 class="page-header">Users</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row" ng-if="!vm.loading">
+        <div class="col-lg-12">
+            <table ng-table="vm.tableParams" class="table" show-filter="true">
+                <tr ng-repeat="user in $data" id="{{user._id}}">
+                    <td title="'Firstname'" filter="{ first_name: 'text'}" sortable="'first_name'">
+                        {{user.first_name}}</td>
+                    <td title="'Lastname'" filter="{ last_name: 'text'}" sortable="'last_name'">
+                        {{user.last_name}}</td>
+                    <td title="'Email'" filter="{ email: 'text'}" sortable="'email'">
+                        {{user.email}}</td>
+                    <td title="'Mobile'" filter="{ mobile: 'text'}" sortable="'mobile'">
+                        {{user.mobile}}</td>
+                    <td title="'Username'" filter="{ username: 'text'}" sortable="'username'">
+                        {{user.username}}</td>
+                    <td title="'Admin'" filter="{ admin: 'text'}" sortable="'admin'">
+                        {{user.admin}}</td>
+                    <td title="'Actions'" class="actions">
+                        <i class="fa fa-pencil edit-user" aria-hidden="true" ng-click="vm.open(user)"></i>
+                        <i class="fa fa-times delete-user" aria-hidden="true" ng-click="vm.deleteUser(user._id)"></i>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div ng-show="vm.loading" class="loader-container">
+        <div class="loader"></div>
+    </div>
+</div>
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+    </div>
+    <form class="form-horizontal" name="$ctrl.userInfoEdit">
+    <div class="modal-body" id="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-model="$ctrl.selected.first_name" id="firstName" placeholder="First Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-3 control-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-model="$ctrl.selected.email" id="email" placeholder="First Name">
+                        </div>
+                    </div>
+
+            </div>
+            <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-model="$ctrl.selected.last_name" id="lastName" placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile" class="col-sm-3 control-label">Mobile</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-model="$ctrl.selected.mobile" id="mobile" placeholder="Mobile">
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-disabled="!$ctrl.userInfoEdit.$dirty " ng-click="$ctrl.ok()">Save</button>
+        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+    </div>
+    </form>
+</script>

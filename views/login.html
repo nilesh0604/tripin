@@ -1,0 +1,27 @@
+<div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Please Sign In</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div ng-show="error" class="alert alert-danger">{{error}}</div>
+                        <form role="form-inline" name="signInForm" novalidate>
+                            <fieldset>
+                                <div class="form-group">
+                                    <input type="text" name="username" id="username" class="form-control" ng-model="username" required autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password" id="password" class="form-control" ng-model="password" required>
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->
+                                <button ng-disabled="signInForm.$invalid" ng-click="loginFn()" class="btn btn-success">Login</button>
+                                <a href="#/register" class="btn btn-info pull-right" ">Register</a>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

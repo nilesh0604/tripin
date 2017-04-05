@@ -1,0 +1,56 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Find Directions</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <form class="form" style="margin-bottom: 20px">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="source">Source</label>
+                    <input type="text" places-auto-complete class="form-control" on-place-changed="vm.placeChanged()" id="source" ng-model="vm.origin" placeholder="Source place name">
+                </div>
+                <!-- <button type="submit" class="btn btn-default" style="margin-left:20px;">Find Direction</button> -->
+            </div>
+            <div class="col-md-4">
+                <div class="form-group" style="margin-left:20px;">
+                    <label for="destination">Destination</label>
+                    <input type="text" places-auto-complete class="form-control" id="destination" ng-model="vm.destination" placeholder="Desination place name">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group" style="margin-left:20px;">
+                    <label for="travelMode">Destination</label>
+                    <select ng-model="vm.travelMode" class="form-control" >
+                        <option selected="selected" value="DRIVING">Driving</option>
+                        <option value="WALKING">Walking</option>
+                        <option value="BICYCLING">Bicycling</option>
+                        <option value="TRANSIT">Transit</option>
+                    </select>
+            </div>
+        </div>
+        <!-- /.row -->
+    </form>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Google Map
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body" style="padding:0px; min-height: 500px;">
+                    <ng-map style="height: 500px;" center="[{{vm.lat}}, {{vm.lng}}]">
+                        <directions draggable="true"  travel-mode="{{vm.travelMode}}" origin="{{vm.origin}}" destination="{{vm.destination}}">
+                        </directions>
+                    </ng-map>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
